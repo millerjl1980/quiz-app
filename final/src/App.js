@@ -1,54 +1,180 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function App() {
 	const questions = [
 		{
-			questionText: 'What is the capital of France?',
+			questionText: 'Personality',
 			answerOptions: [
-				{ answerText: 'New York', isCorrect: false },
-				{ answerText: 'London', isCorrect: false },
-				{ answerText: 'Paris', isCorrect: true },
-				{ answerText: 'Dublin', isCorrect: false },
+				{ answerText: 'Outgoing', bStyle: "talker" },
+				{ answerText: 'Dominating', bStyle: "doer"},
+				{ answerText: 'Easygoing', bStyle: "supporter"},
+				{ answerText: 'No-Nonsense', bStyle: "controller" },
 			],
 		},
 		{
-			questionText: 'Who is CEO of Tesla?',
+			questionText: 'Environment',
 			answerOptions: [
-				{ answerText: 'Jeff Bezos', isCorrect: false },
-				{ answerText: 'Elon Musk', isCorrect: true },
-				{ answerText: 'Bill Gates', isCorrect: false },
-				{ answerText: 'Tony Stark', isCorrect: false },
+				{ answerText: 'Cluttered/Pictures', bStyle: "talker" },
+				{ answerText: 'Trophies/Awards', bStyle: "doer"},
+				{ answerText: 'Keepsakes/Relics', bStyle: "supporter"},
+				{ answerText: 'Order/Charts', bStyle: "controller" },
 			],
 		},
 		{
-			questionText: 'The iPhone was created by which company?',
+			questionText: 'Personal Style',
 			answerOptions: [
-				{ answerText: 'Apple', isCorrect: true },
-				{ answerText: 'Intel', isCorrect: false },
-				{ answerText: 'Amazon', isCorrect: false },
-				{ answerText: 'Microsoft', isCorrect: false },
+				{ answerText: 'People-Oriented', bStyle: "talker" },
+				{ answerText: 'Results-Oriented', bStyle: "doer"},
+				{ answerText: 'Process-Oriented', bStyle: "supporter"},
+				{ answerText: 'Facts-Oriented', bStyle: "controller" },
 			],
 		},
 		{
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Responsiveness',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'Friendly/Affable', bStyle: "talker" },
+				{ answerText: 'Impatient/Restless', bStyle: "doer"},
+				{ answerText: 'Steady/Reserved', bStyle: "supporter"},
+				{ answerText: 'Cool/Distant', bStyle: "controller" },
 			],
 		},
+		{
+			questionText: 'Listening',
+			answerOptions: [
+				{ answerText: 'Drifting', bStyle: "talker" },
+				{ answerText: 'Impatient', bStyle: "doer"},
+				{ answerText: 'Willing', bStyle: "supporter"},
+				{ answerText: 'Selective', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Talking',
+			answerOptions: [
+				{ answerText: 'About People', bStyle: "talker" },
+				{ answerText: 'About Achievement', bStyle: "doer"},
+				{ answerText: 'About Functions', bStyle: "supporter"},
+				{ answerText: 'About Organization', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Relations',
+			answerOptions: [
+				{ answerText: 'Empathizes with Others', bStyle: "talker" },
+				{ answerText: 'Directs Others', bStyle: "doer"},
+				{ answerText: 'Accepts Others', bStyle: "supporter"},
+				{ answerText: 'Assesses Others', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Decisiveness',
+			answerOptions: [
+				{ answerText: 'Popular/Emotional', bStyle: "talker" },
+				{ answerText: 'Quick/Impulsive', bStyle: "doer"},
+				{ answerText: 'Slow/Studied', bStyle: "supporter"},
+				{ answerText: 'Objective/Fact-Based', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Time Usage',
+			answerOptions: [
+				{ answerText: 'Socializes at the expense of time', bStyle: "talker" },
+				{ answerText: 'Always pushed for time', bStyle: "doer"},
+				{ answerText: 'Respects time but not pushed', bStyle: "supporter"},
+				{ answerText: 'Values & manages time well', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Pace',
+			answerOptions: [
+				{ answerText: 'Enthusiastic', bStyle: "talker" },
+				{ answerText: 'Fast', bStyle: "doer"},
+				{ answerText: 'Steady', bStyle: "supporter"},
+				{ answerText: 'Controlled', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Voice',
+			answerOptions: [
+				{ answerText: 'Emotional/Animated', bStyle: "talker" },
+				{ answerText: 'Emotional/Direct', bStyle: "doer"},
+				{ answerText: 'Unemotional/Low-Keyed', bStyle: "supporter"},
+				{ answerText: 'Unemotional/Reserved', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Gestures',
+			answerOptions: [
+				{ answerText: 'Open', bStyle: "talker" },
+				{ answerText: 'Impatient', bStyle: "doer"},
+				{ answerText: 'Measured', bStyle: "supporter"},
+				{ answerText: 'Closed', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Dress',
+			answerOptions: [
+				{ answerText: 'Stylish', bStyle: "talker" },
+				{ answerText: 'Formal', bStyle: "doer"},
+				{ answerText: 'Conforming', bStyle: "supporter"},
+				{ answerText: 'Conservative', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Manner',
+			answerOptions: [
+				{ answerText: 'Friendly', bStyle: "talker" },
+				{ answerText: 'Dominating', bStyle: "doer"},
+				{ answerText: 'Accepting', bStyle: "supporter"},
+				{ answerText: 'Evaluating', bStyle: "controller" },
+			],
+		},
+		{
+			questionText: 'Conversation',
+			answerOptions: [
+				{ answerText: 'People', bStyle: "talker" },
+				{ answerText: 'Bottom Line', bStyle: "doer"},
+				{ answerText: 'Systems', bStyle: "supporter"},
+				{ answerText: 'Facts', bStyle: "controller" },
+			],
+		},
+		
 	];
 
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
+	const [behaviorScore, setBehaviorScore] = useState({Talker: 0, Doer: 0, Supporter: 0, Controller:0,})
+	const [behaviorType, setBehaviorType] = useState("")
 
-	const handleAnswerOptionClick = (isCorrect) => {
-		if (isCorrect) {
-			setScore(score + 1);
+	useEffect(() => {
+		if(showScore){
+			const keys = Object.keys(behaviorScore)
+			const values = keys.map(key => {return behaviorScore[key]})
+			const max = Math.max.apply(null, values)
+			setBehaviorType(Object.keys(behaviorScore).find(key => behaviorScore[key]===max))
 		}
+	}, [showScore, behaviorScore])
 
+	const handleTryAgainClick = () => {
+		setCurrentQuestion(0);
+		setBehaviorScore({Talker: 0, Doer: 0, Supporter: 0, Controller:0,});
+		setShowScore(false);
+		setBehaviorType("");
+	};
+
+	const handleAnswerOptionClick = (bStyle) => {
+		if(bStyle === "talker"){
+			setBehaviorScore(prevState => ({...prevState, Talker: behaviorScore.Talker + 1}))
+		}
+		if(bStyle === "doer"){
+			setBehaviorScore(prevState => ({...prevState, Doer: behaviorScore.Doer + 1}))
+		}
+		if(bStyle === "supporter"){
+			setBehaviorScore(prevState => ({...prevState, Supporter: behaviorScore.Supporter + 1}))
+		}
+		if(bStyle === "controller"){
+			setBehaviorScore(prevState => ({...prevState, Controller: behaviorScore.Controller + 1}))
+		}
+		
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
@@ -60,7 +186,8 @@ export default function App() {
 		<div className='app'>
 			{showScore ? (
 				<div className='score-section'>
-					You scored {score} out of {questions.length}
+					You are a {behaviorType}
+					<button onClick={() => handleTryAgainClick()}>Try Again</button>
 				</div>
 			) : (
 				<>
@@ -72,7 +199,7 @@ export default function App() {
 					</div>
 					<div className='answer-section'>
 						{questions[currentQuestion].answerOptions.map((answerOption) => (
-							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+							<button onClick={() => handleAnswerOptionClick(answerOption.bStyle)}>{answerOption.answerText}</button>
 						))}
 					</div>
 				</>
